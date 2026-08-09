@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import * as XLSX from "xlsx";
 import { fetchPrediction, fetchAllReports, fetchAreas } from "@/services/wasteService";
 import { toast } from "sonner";
 
@@ -110,6 +109,7 @@ export function useDashboard() {
         };
       });
 
+      const XLSX = await import("xlsx");
       const worksheet = XLSX.utils.json_to_sheet(reportData);
       const workbook = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(workbook, worksheet, "Hasil Prediksi AI");

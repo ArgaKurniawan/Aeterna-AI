@@ -4,9 +4,9 @@ import dynamic from "next/dynamic";
 import { useDashboard } from "@/app/hooks/useDashboard";
 import DashboardTopBar from "@/app/components/DashboardTopBar";
 import PredictionPanel from "@/app/components/PredictionPanel";
-import PredictionResults from "@/app/components/PredictionResults";
-import DecisionSupportPanel from "@/app/components/DecisionSupportPanel";
 
+const PredictionResults = dynamic(() => import("@/app/components/PredictionResults"), { ssr: false });
+const DecisionSupportPanel = dynamic(() => import("@/app/components/DecisionSupportPanel"), { ssr: false });
 const InteractiveMap = dynamic(() => import("@/app/components/InteractiveMap"), {
   ssr: false,
 });

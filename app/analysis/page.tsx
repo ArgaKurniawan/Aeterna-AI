@@ -20,7 +20,7 @@ import {
   PieChart
 } from "lucide-react";
 
-const MapComponent = dynamic(() => import("./MapComponent"), { 
+const MapComponent = dynamic(() => import("@/app/components/map/MapComponent"), { 
   ssr: false,
   loading: () => (
     <div style={{ height: "450px", background: "var(--bg-input)", borderRadius: "var(--radius-md)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", color: "var(--text-muted)", gap: 12 }}>
