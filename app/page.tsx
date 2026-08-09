@@ -5,10 +5,36 @@ import { useDashboard } from "@/app/hooks/useDashboard";
 import DashboardTopBar from "@/app/components/DashboardTopBar";
 import PredictionPanel from "@/app/components/PredictionPanel";
 
-const PredictionResults = dynamic(() => import("@/app/components/PredictionResults"), { ssr: false });
-const DecisionSupportPanel = dynamic(() => import("@/app/components/DecisionSupportPanel"), { ssr: false });
+const MapSkeleton = () => (
+  <div style={{
+    height: 340, borderRadius: "var(--radius-lg)",
+    background: "var(--bg-card)", border: "1px solid var(--border-primary)",
+    display: "flex", alignItems: "center", justifyContent: "center",
+    color: "var(--text-muted)", fontSize: 13,
+  }}>
+    Memuat Peta...
+  </div>
+);
+
+const ResultsSkeleton = () => (
+  <div style={{
+    height: 200, borderRadius: "var(--radius-lg)",
+    background: "var(--bg-card)", border: "1px solid var(--border-primary)",
+    marginBottom: 24,
+  }} />
+);
+
 const InteractiveMap = dynamic(() => import("@/app/components/InteractiveMap"), {
   ssr: false,
+  loading: () => <MapSkeleton />,
+});
+const PredictionResults = dynamic(() => import("@/app/components/PredictionResults"), {
+  ssr: false,
+  loading: () => <ResultsSkeleton />,
+});
+const DecisionSupportPanel = dynamic(() => import("@/app/components/DecisionSupportPanel"), {
+  ssr: false,
+  loading: () => <ResultsSkeleton />,
 });
 
 /* ─── Smooth Scroll Helper ──────────────────────────────────────── */
@@ -39,8 +65,8 @@ export default function DashboardPage() {
       {/* Top Bar */}
       <DashboardTopBar />
 
-      {/* Map */}
-      <div style={{ marginBottom: 24 }}>
+      {/* Map — wrapper reserves space to prevent CLS */}
+      <div style={{ marginBottom: 24, minHeight: 340 }}>
         <InteractiveMap
           selectedLocation={dashboard.location}
           onSelectLocation={(name) => {
