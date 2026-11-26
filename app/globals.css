@@ -762,6 +762,10 @@ body {
   background: var(--bg-card) !important;
   font-family: var(--font-sans) !important;
 }
+/* OpenStreetMap Dark Mode Tile Filter */
+.map-tiles-dark {
+  filter: brightness(0.6) invert(1) contrast(2.5) hue-rotate(200deg) saturate(0.35) brightness(0.85);
+}
 .leaflet-control-attribution {
   background: rgba(10, 22, 40, 0.7) !important;
   color: var(--text-muted) !important;

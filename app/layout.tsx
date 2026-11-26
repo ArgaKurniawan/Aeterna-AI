@@ -28,7 +28,7 @@ export default function RootLayout({
         {/* Preconnect to speed up external resource resolution */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://basemaps.cartocdn.com" />
+        <link rel="preconnect" href="https://tile.openstreetmap.org" />
         <link rel="dns-prefetch" href="https://unpkg.com" />
       </head>
       <body className="m-0 flex flex-col md:flex-row min-h-screen bg-[var(--bg-primary)] font-sans">
